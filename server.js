@@ -5,8 +5,9 @@ const cors = require('cors');
 
 // Route imports
 const staffRoutes = require('./routes/statff');
-// const shiftRoutes = require('./routes/shift');
-// const attendanceRoutes = require('./routes/attendance');
+const authRoutes = require('./routes/auth');
+const shiftRoutes = require('./routes/shift');
+const attendanceRoutes = require('./routes/attendance');
 
 // App config
 dotenv.config();
@@ -19,8 +20,9 @@ app.use(express.json());
 
 // Routes
 app.use('/api/staff', staffRoutes);
-// app.use('/api/shift', shiftRoutes);
-// app.use('/api/attendance', attendanceRoutes);
+app.use('/api/auth', authRoutes)
+app.use('/api/shift', shiftRoutes);
+app.use('/api/attendance', attendanceRoutes);
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URL, {
